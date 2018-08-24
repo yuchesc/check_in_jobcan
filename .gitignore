@@ -2,3 +2,4 @@ bs4
 beautifulsoup4-4.6.0.dist-info
 .idea
 .DS_Store
+upload.sh
