@@ -1,0 +1,10 @@
+{
+  "name": "check_in_jobcan",
+  "description": "check in to jobcan",
+  "region": "ap-northeast-1",
+  "handler": "check_in_jobcan.lambda_handler",
+  "runtime": "python3.6",
+  "role": "arn:aws:iam::658519869763:role/check-in-jobcan",
+  "timeout": 20,
+  "memory": 128
+}
