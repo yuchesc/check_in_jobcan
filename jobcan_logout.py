@@ -9,7 +9,8 @@ if __name__ == '__main__':
             raise Exception('Need comment.')
 
         jobcan = Jobcan()
-        jobcan.checkout(sys.argv[1], sys.argv[2])
+        jobcan.checkout(sys.argv[1], sys.argv[2], comment)
+        print('ok')
     except Exception as e:
         print(e)
         sys.exit(1)
