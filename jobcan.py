@@ -51,18 +51,18 @@ class Jobcan:
         payload['user[client_code]'] = ''
         payload['user[password]'] = user_password
 
-        r = self.session.get(self.login_url)
+        r = self.session.get(self.login_url, verify=False)
         if r.status_code != 200:
             raise Exception('Invalid top response. {}'.format(r.status_code))
         parsed_body = BeautifulSoup(r.text, 'html.parser')
         auth_token = self.get_authenticity_token(parsed_body)
         payload['authenticity_token'] = auth_token
 
-        r = self.session.post(self.login_url, payload)
+        r = self.session.post(self.login_url, payload, verify=False)
         if r.status_code != 200:
             raise Exception('Invalid login response. {}'.format(r.status_code))
 
-        r = self.session.get(self.top_url)
+        r = self.session.get(self.top_url, verify=False)
         if r.status_code != 200:
             raise Exception('Invalid top response. {}'.format(r.status_code))
         return r.text
@@ -77,7 +77,7 @@ class Jobcan:
             opt = self.get_option(parsed_body)
             data = self.create_checkin_data(current_token, opt)
             print(data)
-            r = self.session.post(self.adit_url, data)
+            r = self.session.post(self.adit_url, data, verify=False)
             if r.status_code != 200:
                 raise Exception('error occurred. {}'.format(r.status_code))
 
@@ -88,7 +88,7 @@ class Jobcan:
             current_token = self.get_token(parsed_body)
             opt = self.get_option(parsed_body)
             data = self.create_checkout_data(current_token, opt, notice)
-            r = self.session.post(self.adit_url, data)
+            r = self.session.post(self.adit_url, data, verify=False)
             if r.status_code != 200:
                 raise Exception('error occured. {}'.format(r.status_code))
         else:
