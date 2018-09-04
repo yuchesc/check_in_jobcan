@@ -16,7 +16,9 @@ def check_in():
     except Exception as e:
         if sns_topic_arn != '':
             sns.publish(TopicArn=sns_topic_arn, Subject='NG Jobcan Checkin', Message=str(e))
-        raise e
+        print(e)
+        # prevent to retry lambda
+        return 204
 
 
 def lambda_handler(event, context):
